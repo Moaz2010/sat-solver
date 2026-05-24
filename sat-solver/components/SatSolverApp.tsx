@@ -77,13 +77,13 @@ export default function SatSolverApp() {
     : result?.satisfyingAssignments.slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-grid-pattern relative overflow-hidden text-slate-200 selection:bg-cyan-500/30 font-sans">
+    <div className="min-h-screen bg-grid-pattern relative overflow-x-hidden text-slate-200 selection:bg-cyan-500/30 font-sans">
       {/* Abstract Glowing Orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-violet-600/20 blur-[120px] mix-blend-screen animate-pulse-slow pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-600/10 blur-[150px] mix-blend-screen animate-pulse-slow pointer-events-none" style={{ animationDelay: "2s" }} />
       <div className="absolute top-[40%] left-[60%] w-[30vw] h-[30vw] rounded-full bg-emerald-600/10 blur-[100px] mix-blend-screen animate-float pointer-events-none" />
 
-      <main className="max-w-7xl mx-auto px-6 py-12 lg:py-20 relative z-10">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-20 relative z-10 w-full">
         
         {/* Header Section */}
         <motion.div 
@@ -96,13 +96,13 @@ export default function SatSolverApp() {
             <Sparkles className="w-4 h-4 text-cyan-400" />
             <span className="text-xs font-medium tracking-widest text-slate-300 uppercase">Next-Gen Logic Processing</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight">
             Boolean <br className="md:hidden"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 text-glow cursor-default transition-all duration-700 hover:hue-rotate-90">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 text-glow cursor-default transition-all duration-700 hover:hue-rotate-90 break-all sm:break-normal">
               Satisfiability
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed px-4">
             A high-performance algorithmic engine for evaluating complex propositional logic circuits via exhaustive truth table enumeration.
           </p>
         </motion.div>
@@ -114,10 +114,10 @@ export default function SatSolverApp() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 space-y-6"
+            className="lg:col-span-5 space-y-4 sm:space-y-6"
           >
             <div className="glass-panel rounded-3xl p-1">
-              <div className="bg-black/40 rounded-[1.35rem] p-6 lg:p-8 space-y-6">
+              <div className="bg-black/40 rounded-[1.35rem] p-4 sm:p-6 lg:p-8 space-y-5 sm:space-y-6">
                 
                 {/* Engine Header */}
                 <div className="flex items-center justify-between">
@@ -255,9 +255,9 @@ export default function SatSolverApp() {
                   <div className="glass-panel p-1 rounded-3xl overflow-hidden relative">
                     <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${result.satisfiable ? 'from-emerald-500 to-transparent' : 'from-rose-500 to-transparent'}`}></div>
                     
-                    <div className="relative bg-black/60 backdrop-blur-md rounded-[1.35rem] p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-                      <div className="flex items-center gap-5">
-                        <div className={`w-14 h-14 rounded-full flex items-center justify-center shrink-0 border ${
+                    <div className="relative bg-black/60 backdrop-blur-md rounded-[1.35rem] p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 text-center sm:text-left">
+                      <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5">
+                        <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shrink-0 border ${
                           result.satisfiable 
                             ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.3)]' 
                             : 'bg-rose-500/20 border-rose-500/50 text-rose-400 shadow-[0_0_30px_rgba(244,63,94,0.3)]'
@@ -265,7 +265,7 @@ export default function SatSolverApp() {
                           {result.satisfiable ? <CheckCircle2 className="w-7 h-7" /> : <XCircle className="w-7 h-7" />}
                         </div>
                         <div>
-                          <h2 className={`text-3xl font-black tracking-tight ${result.satisfiable ? 'text-emerald-400 text-glow-sm' : 'text-rose-400 text-glow-sm'}`}>
+                          <h2 className={`text-2xl sm:text-3xl font-black tracking-tight ${result.satisfiable ? 'text-emerald-400 text-glow-sm' : 'text-rose-400 text-glow-sm'}`}>
                             {result.satisfiable ? 'SATISFIABLE' : 'UNSATISFIABLE'}
                           </h2>
                           <div className="text-sm text-slate-400 mt-1 font-medium">
