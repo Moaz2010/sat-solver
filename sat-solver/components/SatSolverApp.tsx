@@ -77,7 +77,7 @@ export default function SatSolverApp() {
     : result?.satisfyingAssignments.slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-grid-pattern relative overflow-x-hidden text-slate-200 selection:bg-cyan-500/30 font-sans">
+    <div className="h-screen bg-grid-pattern relative overflow-x-hidden overflow-y-auto overscroll-contain text-slate-200 selection:bg-cyan-500/30 font-sans">
       {/* Abstract Glowing Orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-violet-600/20 blur-[120px] mix-blend-screen animate-pulse-slow pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-600/10 blur-[150px] mix-blend-screen animate-pulse-slow pointer-events-none" style={{ animationDelay: "2s" }} />
@@ -335,7 +335,7 @@ export default function SatSolverApp() {
                         <Activity className="w-4 h-4 text-cyan-400" /> Exhaustive Truth Table
                       </h3>
                     </div>
-                    <div className="w-full overflow-x-auto custom-scrollbar max-h-96">
+                    <div className="w-full overflow-x-auto overflow-y-visible custom-scrollbar">
                       <table className="min-w-[34rem] sm:min-w-full w-full text-xs sm:text-sm font-mono text-left whitespace-nowrap">
                         <thead className="bg-[#0a0a0f]/90 backdrop-blur sticky top-0 z-10 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
                           <tr>
