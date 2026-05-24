@@ -289,7 +289,7 @@ export default function SatSolverApp() {
 
                   {/* Satisfying Assignments */}
                   {result.satisfiable && (
-                    <div className="glass-panel rounded-2xl p-6 relative overflow-hidden">
+                    <div className="glass-panel rounded-2xl p-4 sm:p-6 relative overflow-hidden">
                       <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
                       <h3 className="text-sm font-bold uppercase tracking-widest text-emerald-400 mb-4 flex items-center gap-2">
                         <Sparkles className="w-4 h-4" /> Valid States
@@ -330,22 +330,24 @@ export default function SatSolverApp() {
 
                   {/* Global Truth Table */}
                   <div className="glass-panel rounded-2xl overflow-hidden flex flex-col relative">
-                    <div className="p-6 pb-4 border-b border-white/10 bg-white/[0.02]">
+                    <div className="p-4 sm:p-6 pb-4 border-b border-white/10 bg-white/[0.02]">
                       <h3 className="text-sm font-bold uppercase tracking-widest text-slate-300 flex items-center gap-2">
                         <Activity className="w-4 h-4 text-cyan-400" /> Exhaustive Truth Table
                       </h3>
                     </div>
-                    <div className="overflow-x-auto custom-scrollbar max-h-96">
-                      <table className="w-full text-sm font-mono text-left whitespace-nowrap">
+                    <div className="w-full overflow-x-auto custom-scrollbar max-h-96">
+                      <table className="min-w-[34rem] sm:min-w-full w-full text-xs sm:text-sm font-mono text-left whitespace-nowrap">
                         <thead className="bg-[#0a0a0f]/90 backdrop-blur sticky top-0 z-10 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
                           <tr>
                             {result.variables.map((v) => (
-                              <th key={v} className="px-6 py-4 text-slate-400 font-medium">
+                              <th key={v} className="px-3 sm:px-6 py-3 sm:py-4 text-slate-400 font-medium">
                                 {v}
                               </th>
                             ))}
-                            <th className="px-6 py-4 font-medium text-white flex items-center gap-2 border-l border-white/5 bg-white/[0.01]">
-                              Output <ChevronRight className="w-3 h-3 text-slate-500"/>
+                            <th className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-white border-l border-white/5 bg-white/[0.01]">
+                              <span className="inline-flex items-center gap-2">
+                                Output <ChevronRight className="w-3 h-3 text-slate-500"/>
+                              </span>
                             </th>
                           </tr>
                         </thead>
@@ -358,14 +360,14 @@ export default function SatSolverApp() {
                               }`}
                             >
                               {result.variables.map((v) => (
-                                <td key={v} className="px-6 py-3">
+                                <td key={v} className="px-3 sm:px-6 py-2.5 sm:py-3">
                                   <span className={`inline-block w-2 h-2 rounded-full mr-2 shadow-[0_0_8px_currentColor] ${row.assignment[v] ? 'bg-cyan-400 text-cyan-400' : 'bg-slate-700 text-slate-700'}`}></span>
                                   <span className={row.assignment[v] ? 'text-slate-200' : 'text-slate-500'}>
                                     {row.assignment[v] ? "True" : "False"}
                                   </span>
                                 </td>
                               ))}
-                              <td className={`px-6 py-3 font-bold border-l border-white/5 ${
+                              <td className={`px-3 sm:px-6 py-2.5 sm:py-3 font-bold border-l border-white/5 ${
                                 row.result ? "text-emerald-400 text-glow-sm bg-emerald-500/[0.02]" : "text-rose-400/70"
                               }`}>
                                 {row.result ? "TRUE" : "FALSE"}
