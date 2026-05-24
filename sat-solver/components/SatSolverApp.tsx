@@ -75,6 +75,16 @@ export default function SatSolverApp() {
   const displayedSatisfying = showAll
     ? result?.satisfyingAssignments
     : result?.satisfyingAssignments.slice(0, 4);
+  const resultsPanelRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to results on mobile when they appear
+  useEffect(() => {
+    if (result && resultsPanelRef.current && window.innerWidth < 1024) {
+      setTimeout(() => {
+        resultsPanelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }
+  }, [result]);
 
   return (
     <div className="h-screen bg-grid-pattern relative overflow-x-hidden overflow-y-auto overscroll-contain text-slate-200 selection:bg-cyan-500/30 font-sans">
@@ -114,7 +124,7 @@ export default function SatSolverApp() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 space-y-4 sm:space-y-6"
+            className="lg:col-span-5 space-y-4 sm:space-y-6 min-w-0"
           >
             <div className="glass-panel rounded-3xl p-1">
               <div className="bg-black/40 rounded-[1.35rem] p-4 sm:p-6 lg:p-8 space-y-5 sm:space-y-6">
@@ -220,11 +230,12 @@ export default function SatSolverApp() {
           </motion.div>
 
           {/* Right Column: Visualization */}
+          <div ref={resultsPanelRef} className="lg:col-span-7 min-w-0">
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="lg:col-span-7"
+            className="w-full"
           >
             <AnimatePresence mode="wait">
               {!result ? (
@@ -335,8 +346,8 @@ export default function SatSolverApp() {
                         <Activity className="w-4 h-4 text-cyan-400" /> Exhaustive Truth Table
                       </h3>
                     </div>
-                    <div className="w-full overflow-x-auto overflow-y-visible custom-scrollbar">
-                      <table className="min-w-[34rem] sm:min-w-full w-full text-xs sm:text-sm font-mono text-left whitespace-nowrap">
+                    <div className="w-full max-w-full overflow-x-auto overflow-y-visible custom-scrollbar">
+                      <table className="min-w-[28rem] sm:min-w-full w-full text-xs sm:text-sm font-mono text-left whitespace-nowrap">
                         <thead className="bg-[#0a0a0f]/90 backdrop-blur sticky top-0 z-10 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
                           <tr>
                             {result.variables.map((v) => (
@@ -383,6 +394,7 @@ export default function SatSolverApp() {
               )}
             </AnimatePresence>
           </motion.div>
+          </div>
         </div>
       </main>
     </div>
